@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DubAI — English to Hindi Video Dubber</title>
+<meta name="description" content="Free AI tool to dub any English video into Hindi. 100% free, fast, professional.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<!-- ============ GLOWING ORBS ============ -->
+<div class="glow-orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="#" class="nav-logo">
+      <div class="logo-icon">
+        <i data-lucide="languages"></i>
+      </div>
+      <div class="logo-text">
+        <span class="logo-title">DubAI</span>
+        <span class="logo-sub">EN → HI Video</span>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <a href="#how" class="nav-link">How it works</a>
+      <a href="#upload" class="btn-nav-cta">
+        <i data-lucide="upload-cloud"></i> Start Now
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="grid-pattern"></div>
+  <div class="hero-content">
+    
+    <div class="hero-badge">
+      <i data-lucide="sparkles"></i>
+      <span>100% Free • No Sign-up • AI Powered</span>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="line line-1">Dub Any English</span>
+      <span class="line line-2 gradient-text">Video Into Hindi</span>
+      <span class="line line-3">In Minutes</span>
+    </h1>
+
+    <p class="hero-desc">
+      Upload your English video and get a Hindi dubbed version — automatically. 
+      Powered by Whisper AI, Google Translate, and Microsoft Neural Voices.
+    </p>
+
+    <div class="hero-cta">
+      <a href="#upload" class="btn-primary">
+        <i data-lucide="upload-cloud"></i>
+        Upload Video
+        <i data-lucide="arrow-right"></i>
+      </a>
+      <a href="#how" class="btn-secondary">
+        <i data-lucide="play-circle"></i>
+        See How It Works
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">FREE</div>
+        <div class="stat-label">Always</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">10x</div>
+        <div class="stat-label">Faster</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4.9★</div>
+        <div class="stat-label">Quality</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3D FLOATING CARD (Demo) ============ -->
+<section class="demo-section">
+  <div class="demo-3d-stage">
+    <div class="card-3d">
+      <div class="card-3d-face card-front">
+        <div class="card-icon-wrap">
+          <i data-lucide="video"></i>
+        </div>
+        <h3>English Video</h3>
+        <p>Original audio in English</p>
+      </div>
+      <div class="card-3d-arrow">
+        <i data-lucide="arrow-right"></i>
+      </div>
+      <div class="card-3d-face card-back">
+        <div class="card-icon-wrap gradient-icon">
+          <i data-lucide="languages"></i>
+        </div>
+        <h3>Hindi Video</h3>
+        <p>Dubbed in natural Hindi voice</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ UPLOAD SECTION ============ -->
+<section id="upload" class="upload-section">
+  <div class="section-header">
+    <div class="section-badge">
+      <i data-lucide="rocket"></i>
+      <span>Start Dubbing</span>
+    </div>
+    <h2 class="section-title">Upload Your <span class="gradient-text">English Video</span></h2>
+    <p class="section-desc">MP4, MOV, AVI, MKV supported. Max recommended: 10 minutes for best experience.</p>
+  </div>
+
+  <div class="upload-card">
+    <div id="dropzone" class="dropzone">
+      <input type="file" id="fileInput" accept="video/*" hidden>
+      <div class="dropzone-inner">
+        <div class="upload-icon">
+          <i data-lucide="upload-cloud"></i>
+        </div>
+        <h3 class="dropzone-title">Drag & drop your video here</h3>
+        <p class="dropzone-sub">or</p>
+        <button class="btn-browse" onclick="document.getElementById('fileInput').click()">
+          <i data-lucide="folder-open"></i>
+          Browse Files
+        </button>
+        <p class="dropzone-hint">
+          <i data-lucide="shield-check"></i>
+          Your files are processed securely and deleted after 1 hour
+        </p>
+      </div>
+    </div>
+
+    <div id="fileInfo" class="file-info hidden">
+      <div class="file-info-icon">
+        <i data-lucide="file-video"></i>
+      </div>
+      <div class="file-info-details">
+        <div class="file-name" id="fileName">video.mp4</div>
+        <div class="file-size" id="fileSize">0 MB</div>
+      </div>
+      <button class="file-remove" onclick="resetUpload()">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+
+    <div class="options-row">
+      <div class="option-group">
+        <label class="option-label">
+          <i data-lucide="mic"></i> Voice Type
+        </label>
+        <select id="voiceSelect" class="option-select">
+          <option value="hi-IN-MadhurNeural">Male (Madhur) — Natural</option>
+          <option value="hi-IN-SwaraNeural">Female (Swara) — Natural</option>
+        </select>
+      </div>
+      <div class="option-group">
+        <label class="option-label">
+          <i data-lucide="music"></i> Background Music
+        </label>
+        <select id="musicSelect" class="option-select">
+          <option value="keep">Keep Original (Lower Volume)</option>
+          <option value="mute">Mute Background</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="startBtn" class="btn-start" disabled>
+      <i data-lucide="sparkles"></i>
+      Start Dubbing
+    </button>
+
+    <div id="progressBox" class="progress-box hidden">
+      <div class="progress-icon">
+        <i data-lucide="loader" class="spin"></i>
+      </div>
+      <div class="progress-info">
+        <div class="progress-title" id="progressTitle">Uploading video...</div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-hint" id="progressHint">Please don't close this tab</div>
+      </div>
+    </div>
+
+    <div id="resultBox" class="result-box hidden">
+      <div class="result-icon">
+        <i data-lucide="check-circle"></i>
+      </div>
+      <h3 class="result-title">Your Hindi Video is Ready!</h3>
+      <p class="result-desc">Preview and download your dubbed video below.</p>
+      <video id="resultVideo" controls class="result-video"></video>
+      <div class="result-actions">
+        <a id="downloadBtn" class="btn-primary" download>
+          <i data-lucide="download"></i>
+          Download Video
+        </a>
+        <button class="btn-secondary" onclick="resetUpload()">
+          <i data-lucide="rotate-ccw"></i>
+          Dub Another
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how" class="how-section">
+  <div class="section-header">
+    <div class="section-badge">
+      <i data-lucide="workflow"></i>
+      <span>How It Works</span>
+    </div>
+    <h2 class="section-title">From English to Hindi <span class="gradient-text">In 4 Steps</span></h2>
+  </div>
+
+  <div class="steps-grid">
+    <div class="step-card" style="--delay:0s">
+      <div class="step-num">01</div>
+      <div class="step-icon"><i data-lucide="upload"></i></div>
+      <h3>Upload</h3>
+      <p>Drop your English video file — MP4, MOV, or AVI</p>
+    </div>
+    <div class="step-card" style="--delay:0.15s">
+      <div class="step-num">02</div>
+      <div class="step-icon"><i data-lucide="ear"></i></div>
+      <h3>Transcribe</h3>
+      <p>Whisper AI listens and converts speech to text</p>
+    </div>
+    <div class="step-card" style="--delay:0.3s">
+      <div class="step-num">03</div>
+      <div class="step-icon"><i data-lucide="languages"></i></div>
+      <h3>Translate</h3>
+      <p>Google Translate converts English text to Hindi</p>
+    </div>
+    <div class="step-card" style="--delay:0.45s">
+      <div class="step-num">04</div>
+      <div class="step-icon"><i data-lucide="mic"></i></div>
+      <h3>Voice & Merge</h3>
+      <p>Hindi voice generated and merged with your video</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <div class="logo-icon">
+        <i data-lucide="languages"></i>
+      </div>
+      <div>
+        <div class="footer-brand-title">DubAI</div>
+        <div class="footer-brand-sub">English to Hindi Video Dubbing</div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="#upload">Upload</a>
+      <a href="#how">How It Works</a>
+      <a href="https://github.com" target="_blank">GitHub</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 DubAI. Built with ❤️ for creators. 100% Free & Open Source.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
